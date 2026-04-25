@@ -24,6 +24,7 @@ pipeline {
         stage('Install & Build Frontend') {
             steps {
                 dir('frontend') {
+                    sh 'rm -rf node_modules package-lock.json || true'
                     sh 'npm install'
                     sh 'npm run build'
                 }
