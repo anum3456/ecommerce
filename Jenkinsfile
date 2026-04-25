@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        NODE_ENV = 'production'
+    }
+
     stages {
 
         stage('Checkout') {
@@ -9,7 +13,7 @@ pipeline {
             }
         }
 
-        stage('Build Backend') {
+        stage('Install Backend Dependencies') {
             steps {
                 dir('backend') {
                     sh 'npm install'
@@ -17,12 +21,18 @@ pipeline {
             }
         }
 
-        stage('Build Frontend') {
+        stage('Install & Build Frontend') {
             steps {
                 dir('frontend') {
                     sh 'npm install'
                     sh 'npm run build'
                 }
+            }
+        }
+
+        stage('Run Tests (Optional)') {
+            steps {
+                echo "No tests configured yet"
             }
         }
 
@@ -33,11 +43,24 @@ pipeline {
             }
         }
 
-        stage('Deploy') {
+        stage('Docker Compose Deploy') {
             steps {
                 sh 'docker compose down || true'
-                sh 'docker compose up -d'
+                sh 'docker compose up -d --build'
             }
+        }
+
+    }
+
+    post {
+        success {
+            echo '✅ Pipeline executed successfully!'
+        }
+
+        failure {
+            echo '❌ Pipeline failed. Check logs.'
         }
     }
 }
+
+
