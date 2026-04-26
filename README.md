@@ -43,7 +43,6 @@ ecommerce/
 
 ## ⚙️ Features
 
-* User authentication
 * Product listing
 * Add to cart
 * Order management
@@ -130,52 +129,6 @@ stage('Install & Build Frontend') {
 * Do NOT delete `package-lock.json` in Jenkins
 * Ensure all dependencies (like Vite plugins) are installed
 * Keep Tailwind version consistent
-
----
-
-## 🐛 Common Issues & Fixes
-
-### ❌ Vite Plugin Not Found
-
-```
-Cannot find package '@vitejs/plugin-react'
-```
-
-✅ Fix:
-
-```bash
-npm install @vitejs/plugin-react --save-dev
-```
-
----
-
-### ❌ Tailwind Build Error
-
-```
-Unknown word "use strict"
-```
-
-✅ Fix:
-
-* Ensure Tailwind version consistency
-* Use:
-
-```css
-@import "tailwindcss";
-```
-
----
-
-## 📦 Deployment
-
-After successful pipeline execution:
-
-* Docker images are built
-* Containers are deployed using:
-
-```bash
-docker compose up -d --build
-```
 
 ---
 
