@@ -1,92 +1,201 @@
-# Atelier — Full Stack Mini eCommerce
+# 🛒 E-Commerce Full Stack Application (CI/CD Enabled)
 
-## Prerequisites: Install MongoDB (Windows)
-
-**Option A — MongoDB Community Server (recommended)**
-1. Download: https://www.mongodb.com/try/download/community
-2. Run installer — check "Install MongoDB as a Service" ✅
-3. MongoDB will start automatically
-
-**Verify / start MongoDB:**
-```powershell
-net start MongoDB
-```
-
-**Option B — MongoDB Atlas (cloud, no install)**
-1. Free account at https://cloud.mongodb.com
-2. Create free M0 cluster, get your connection string
-3. Edit backend/.env → set MONGO_URI to your Atlas URI
+A full-stack eCommerce web application built with modern technologies, integrated with a complete CI/CD pipeline using Jenkins and Docker.
 
 ---
 
-## Setup & Run
+## 🚀 Tech Stack
 
-### Step 1 — Install all dependencies
-```powershell
-npm install          # installs concurrently in root
-npm run install:all  # installs backend + frontend deps
+### 🔹 Frontend
+
+* React (Vite)
+* Tailwind CSS
+* Axios
+* React Router
+
+### 🔹 Backend
+
+* Node.js
+* Express.js
+* MongoDB
+
+### 🔹 DevOps / CI-CD
+
+* Jenkins
+* Docker & Docker Compose
+* GitHub
+
+---
+
+## 📁 Project Structure
+
+```
+ecommerce/
+│
+├── backend/          # Express API
+├── frontend/         # React App (Vite)
+├── docker-compose.yml
+├── Jenkinsfile
+└── README.md
 ```
 
-### Step 2 — Seed the database (MongoDB must be running)
-```powershell
-npm run seed
+---
+
+## ⚙️ Features
+
+* User authentication
+* Product listing
+* Add to cart
+* Order management
+* REST API integration
+* CI/CD pipeline automation
+* Dockerized services
+
+---
+
+## 🧑‍💻 Local Development Setup
+
+### 1️⃣ Clone Repository
+
+```bash
+git clone https://github.com/anum3456/ecommerce.git
+cd ecommerce
 ```
 
-### Step 3 — Start both servers
+---
 
-**Option A — Single command (after npm install in root)**
-```powershell
+### 2️⃣ Backend Setup
+
+```bash
+cd backend
+npm install
+npm start
+```
+
+---
+
+### 3️⃣ Frontend Setup
+
+```bash
+cd frontend
+npm install
 npm run dev
 ```
 
-**Option B — Two separate terminals (always works)**
-```powershell
-# Terminal 1
-.\start-backend.bat
+---
 
-# Terminal 2
-.\start-frontend.bat
-```
+## 🐳 Docker Setup
 
-### Step 4 — Open browser
-```
-http://localhost:5173
+Run full application using Docker:
+
+```bash
+docker compose up --build
 ```
 
 ---
 
-## Troubleshooting
+## ⚡ CI/CD Pipeline (Jenkins)
 
-**MongoDB connection refused**
-```powershell
-net start MongoDB
-# or open services.msc and start MongoDB manually
-```
+This project uses Jenkins for automation.
 
-**concurrently not found**
-```powershell
-npm install    # run this in the ecommerce/ root folder first
-```
+### Pipeline Stages:
 
-**Port 5000 in use**
-```powershell
-netstat -ano | findstr :5000
-taskkill /PID <PID_NUMBER> /F
+1. Checkout Code from GitHub
+2. Install Backend Dependencies
+3. Install & Build Frontend
+4. Run Tests (optional)
+5. Docker Build (Frontend + Backend)
+6. Deploy using Docker Compose
+
+---
+
+## 🔧 Jenkinsfile Overview
+
+```groovy
+stage('Install & Build Frontend') {
+    steps {
+        dir('frontend') {
+            sh 'npm ci'
+            sh 'npm run build'
+        }
+    }
+}
 ```
 
 ---
 
-## API Endpoints
+## ❗ Important Notes
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | /api/products | List products (?category= ?search=) |
-| GET | /api/products/:id | Single product |
-| POST | /api/products | Create product |
-| GET | /api/cart | Get cart |
-| POST | /api/cart | Add to cart |
-| PATCH | /api/cart/:id | Update quantity |
-| DELETE | /api/cart/:id | Remove item |
-| DELETE | /api/cart | Clear cart |
-| GET | /api/orders | List orders |
-| POST | /api/orders | Place order (clears cart) |
+* Use `npm ci` in CI/CD instead of `npm install`
+* Do NOT delete `package-lock.json` in Jenkins
+* Ensure all dependencies (like Vite plugins) are installed
+* Keep Tailwind version consistent
+
+---
+
+## 🐛 Common Issues & Fixes
+
+### ❌ Vite Plugin Not Found
+
+```
+Cannot find package '@vitejs/plugin-react'
+```
+
+✅ Fix:
+
+```bash
+npm install @vitejs/plugin-react --save-dev
+```
+
+---
+
+### ❌ Tailwind Build Error
+
+```
+Unknown word "use strict"
+```
+
+✅ Fix:
+
+* Ensure Tailwind version consistency
+* Use:
+
+```css
+@import "tailwindcss";
+```
+
+---
+
+## 📦 Deployment
+
+After successful pipeline execution:
+
+* Docker images are built
+* Containers are deployed using:
+
+```bash
+docker compose up -d --build
+```
+
+---
+
+## 📌 Future Improvements
+
+* Add unit & integration tests
+* Implement payment gateway
+* Add admin dashboard
+* Kubernetes deployment
+
+---
+
+## 👩‍💻 Author
+
+**Anum Tahzeem**
+
+---
+
+## ⭐ Support
+
+If you like this project, give it a ⭐ on GitHub!
+
+---
