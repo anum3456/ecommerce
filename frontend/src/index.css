@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap');
+@import "tailwindcss";
+
+:root {
+  --sand: #f5f0e8;
+  --charcoal: #1c1c1e;
+  --warm-gray: #8a8680;
+  --accent: #c17f3e;
+  --accent-light: #e8c99a;
+  --surface: #ffffff;
+  --border: #e8e2d9;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background-color: var(--sand);
+  color: var(--charcoal);
+  margin: 0;
+}
+
+h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
+
+.btn-primary {
+  background-color: var(--charcoal);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border: 2px solid var(--charcoal);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.btn-primary:hover { background-color: transparent; color: var(--charcoal); }
+
+.btn-accent {
+  background-color: var(--accent);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border: 2px solid var(--accent);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.btn-accent:hover { background-color: transparent; color: var(--accent); }
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--charcoal);
+  padding: 0.6rem 1.25rem;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  letter-spacing: 0.04em;
+  border: 1.5px solid var(--border);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.btn-outline:hover { border-color: var(--charcoal); }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.card:hover {
+  box-shadow: 0 8px 32px rgba(28,28,30,0.08);
+  transform: translateY(-2px);
+}
+
+input, select, textarea { font-family: 'DM Sans', sans-serif; }
+
+.tag {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--accent);
+  background: rgba(193,127,62,0.1);
+  padding: 0.2rem 0.6rem;
+  border-radius: 2px;
+}
